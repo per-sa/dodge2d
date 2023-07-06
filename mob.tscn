@@ -1,0 +1,68 @@
+[gd_scene load_steps=10 format=3 uid="uid://di6uceldepsvi"]
+
+[ext_resource type="Script" path="res://Mob.cs" id="1_atwa2"]
+[ext_resource type="Texture2D" uid="uid://bjrs5rj7be3t5" path="res://art/enemyFlyingAlt_1.png" id="1_wwuh3"]
+[ext_resource type="Texture2D" uid="uid://bhnrgg565bjd" path="res://art/enemyFlyingAlt_2.png" id="2_rvyrn"]
+[ext_resource type="Texture2D" uid="uid://b0s4wiwbneb06" path="res://art/enemySwimming_1.png" id="3_bo8kn"]
+[ext_resource type="Texture2D" uid="uid://cpbdtlnfwao3j" path="res://art/enemySwimming_2.png" id="4_1ah3f"]
+[ext_resource type="Texture2D" uid="uid://bhjrwctnvmmf3" path="res://art/enemyWalking_1.png" id="5_08j5t"]
+[ext_resource type="Texture2D" uid="uid://u4k0wsp58fnu" path="res://art/enemyWalking_2.png" id="6_7gfyf"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6dsav"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_wwuh3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_rvyrn")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_bo8kn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_1ah3f")
+}],
+"loop": true,
+"name": &"swim",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_08j5t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_7gfyf")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 3.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7f2ku"]
+radius = 35.0
+height = 102.0
+
+[node name="Mob" type="RigidBody2D"]
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_atwa2")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_6dsav")
+animation = &"walk"
+frame = 1
+frame_progress = 0.239807
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_7f2ku")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
